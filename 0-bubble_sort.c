@@ -1,37 +1,43 @@
 #include "sort.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 /**
- * bubble_sort - sorts an array of integers in ascending order
- * @array: sort array.
- * @size: size of array.
- * Return: Void function.
+ * bubble_sort - Sorts an array of integers
+ * @array: The array to be sorted
+ * @size: Size of the array
+ * Return: Void
  */
 
 void bubble_sort(int *array, size_t size)
 {
-	size_t tmp;
-	size_t traverse;
-	size_t j;
+	size_t counter1, counter2;
+	int temp_swap, flag = 0;
 
-	if (array == NULL || size < 2)
+	/*Check inputs*/
+	if (array == NULL || size == 0)
 	{
 		return;
 	}
-	/*Loop then move element to right position */
-	/*Traverse*/
 
-	sizeOfArray = size - 1;
-	for (j = 0; j < sizeOfArray; j++)
+	/* Counts through the current step in the sort */
+	for (counter1 = 0; counter1 < size - 1; counter1++)
 	{
-		/*check greater element presiding previous index*/
-		if (array[j] > array[j + 1])
+		/* Loop through array */
+		for (counter2 = 0; counter2 < size - counter1 - 1; counter2++)
 		{
-			tmp = array[j];
-			array[j] = array[j + 1];
-			array[j + 1] = tmp;
-			print_array(array, size);
+			if (array[counter2] > array[counter2 + 1])
+			{
+				/* Swap a[i] with a[1 + 1] */
+				temp_swap = array[counter2];
+				array[counter2] = array[counter2 + 1];
+				array[counter2 + 1] = temp_swap;
+				/* Print result */
+				print_array(array, size);
+				flag = 1;
+			}
+		}
+		if (flag == 0)
+		{
+			break;
 		}
 	}
 }
